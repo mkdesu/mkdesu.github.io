@@ -1,2 +1,3 @@
-# mkdesu.github.io
-DEₑSU Website
+# DEₑSU
+
+Here reside files for [DEₑSU](https://dee.su/) website.
