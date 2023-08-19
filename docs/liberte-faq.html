@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Liberté Linux FAQ &middot; DEₑSU
+    
+  </title>
+
+  
+  <link rel="canonical" href="https://dee.su/liberte-faq">
+  
+
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/fonts.css">
+  <link rel="stylesheet" href="/public/css/extra.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+</head>
+
+
+  <body class="theme-base-08 sidebar-overlay">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<!--input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  
+
+  <div class="sidebar-item">
+    <p>
+      <img src="/public/img/liberte-logo.png" alt="Logo" width="128" height="128" />
+    </p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+
+    
+    
+      
+        
+          <a class="sidebar-nav-item" href="/">Welcome to DEₑSU</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/liberte">Liberté Linux</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/cables">Cables Communication</a>
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2023
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">DEₑSU</a>
+            <small>Anonymouse</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="page">
+  <h1 class="page-title">Liberté Linux FAQ</h1>
+  <h2 id="faq">FAQ</h2>
+
+<h3 id="general">General</h3>
+<p><strong>Q</strong>: How can I trust an anonymity distribution whose source has no verified
+credentials?</p>
+
+<p><strong>A</strong>: Liberté Linux is based on
+<a href="https://wiki.gentoo.org/wiki/Project:Hardened">Hardened Gentoo</a>,
+which is a well-known and trusted Linux distribution. You are welcome to
+download and peruse the source code, and <a href="/liberte-build">build</a>
+a live image yourself. Extreme care has been devoted to this ability of users
+to build a custom Liberté image on any modern Linux distribution.</p>
+
+<p><strong>Q</strong>: How does Liberté Linux differ from other anonymity distributions?</p>
+
+<p><strong>A</strong>: Liberté is a <a href="/liberte-motivation">specialized</a> and
+lightweight live distribution with
+<a href="/liberte-security">deep system integration</a> and
+<a href="https://github.com/mkdesu">rapid development cycle</a>;
+it is not a thin configuration wrapper for a major distribution. The focus is
+on adding innovative features, some of which require in-house research and
+development. A few of the capabilities that (to the best of my knowledge) were
+pioneered in Liberté Linux are:</p>
+
+<ul>
+  <li><a href="/cables">Cables communication</a> for transparent and reliable
+anonymous email-like message exchange</li>
+  <li>Immediate shutdown with anti-forensic memory erasure on boot media
+extraction</li>
+  <li>Encrypted persistence of user data and settings on resizable
+<a href="https://gitlab.com/cryptsetup/cryptsetup">LUKS</a>/<a href="https://en.wikipedia.org/wiki/FreeOTFE">OTFE</a>
+volume</li>
+  <li>Initial clock setting from Tor consensus, entirely dropping the requirement
+for non-Tor communication (including DNS)</li>
+  <li>Separate <em>Unsafe Browser</em> for registration in public Wi-Fi hotspots</li>
+  <li>I2P communication over Tor means better firewall traversal and no need to
+rely on another anonymity framework</li>
+</ul>
+
+<p>The purpose of Liberté is not to popularize Tor or I2P with
+computer-illiterate users — this distribution assumes willingness and
+capability to study operation of non-mainstream operating systems and
+software. It is entirely possible that you do not belong to the target
+userbase, and that using Liberté (if found) will result in stronger negative
+bias from the authorities.</p>
+
+<p><strong>Q</strong>: Why create a lightweight distribution when large-capacity media is
+commonly available?</p>
+
+<p><strong>A</strong>: Less code implies less attack vectors, less dispersion of attention
+during development, faster integration of upgrades and exploit fixes, better
+and faster testing, and more rapid development cycle overall. Lightweight
+packages also <em>usually</em> imply less RAM requirements, which matters for older
+hardware and for virtual machines. Smaller image allows to optionally load it
+into RAM (automatic on <code class="language-plaintext highlighter-rouge">.iso</code>), and enables non-disruptive image
+verification on boot. There are also more improvement opportunities — e.g.,
+<a href="https://en.wikipedia.org/wiki/Preboot_Execution_Environment">network boot</a> of
+a current image is one such possibility. Note that being lightweight does not
+necessarily imply lack of features — e.g., Liberté has full
+multilingualization, including fonts and UI locales.</p>
+
+<p><strong>Q</strong>: In reference to the <a href="/liberte-logo">logo</a>, is Liberté
+distributed by <a href="https://www.4chan.org/">4chan</a>?
+<a href="https://en.wikipedia.org/wiki/Eye_of_Providence">Illuminati</a>?
+<a href="https://en.wikipedia.org/wiki/Anonymous_(group)">Anonymous</a>?</p>
+
+<p><strong>A</strong>: No. Actually, <em>4chan</em> regulars tend to dislike the logo, as anonymity
+symbols fell out of fashion with the site community. The logo reflects the
+ability to communicate anonymously over the network, and how this ability
+empowers the users.</p>
+
+<blockquote>
+  <p>The <em>Triforce</em> is a powerful artifact from The Legend of Zelda. The
+Anonymous does not simply possess it, Anonymous <em>is</em> the Triforce. Freedom of
+action, that’s how I deciphered the logotype.
+<em>—Anonymous, HiveMind</em></p>
+</blockquote>
+
+<p><strong>Q</strong>: I will configure my system to do the same in a week.</p>
+
+<p><strong>A</strong>: That’s great (and you won’t). In any case, it is not a question.</p>
+
+<hr />
+
+<h3 id="usage">Usage</h3>
+<p><strong>Q</strong>: How do I install new packages?</p>
+
+<p><strong>A</strong>: Liberté Linux is a deployment-only distribution, so there is no way to
+install software into its root tree — both due to lack of toolchain and
+portage, and due to <a href="/liberte-security">read-only mode</a> of most
+of the filesystem. The only way of adding software is
+<a href="/liberte-build">building</a> a custom image, or using portable binaries
+(provided that their required libraries are available).</p>
+
+<p><strong>Q</strong>: Is it possible to resize the
+<a href="https://en.wikipedia.org/wiki/Linux_Unified_Key_Setup">OTFE</a> encrypted
+virtual partition file?</p>
+
+<p><strong>A</strong>: Yes, run <code class="language-plaintext highlighter-rouge">sudo otfe-resize</code> from the terminal to grow or shrink the
+live partition.</p>
+
+<p>As a sidenote, from
+<a href="https://web.archive.org/web/20130315161841/http://freeotfe.org/docs/Main/FAQ.htm#gd">FreeOTFE FAQ</a>:</p>
+
+<blockquote>
+  <p>It should be noted that, although a number of <em>other</em> disk encryption
+systems <em>claim</em> to offer volume resizing functionality, they typically carry
+out [a full copy to a newly created volume] “behind the scenes” (often failing
+completely if insufficient storage is available to hold the new volume) […]</p>
+</blockquote>
+
+<p>The above only reflects the complexity of this functionality as perceived by
+the authors of FreeOTFE, and is not true for Liberté Linux, which
+transparently and reliably resizes the encrypted volume.</p>
+
+<p><strong>Q</strong>: How do I change the OTFE encrypted virtual partition passphrase?</p>
+
+<p><strong>A</strong>: Get a root console (see <em>Troubleshooting</em> in
+<a href="/liberte-documentation">Documentation</a>), and run</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cryptsetup luksChangeKey /mnt/boot/otfe/liberte.vol
+$ rm /mnt/boot/otfe/liberte.vol-hdr.bak
+$ cryptsetup luksHeaderBackup /mnt/boot/otfe/liberte.vol --header-backup-file /mnt/boot/otfe/liberte.vol-hdr.bak
+</code></pre></div></div>
+
+<p><strong>NOTE</strong>: Modern flash memory devices with
+<a href="https://en.wikipedia.org/wiki/Wear_leveling">wear leveling</a>
+(as well as modern HDDs with automatic bad sectors remapping)
+<a href="https://www.usenix.org/legacy/event/hotsec08/tech/full_papers/czeskis/czeskis_html/">cannot guarantee</a>
+that the original OTFE header and its backup have been erased.</p>
+
+<p><strong>Q</strong>: The screen goes blank at some stage of the boot process, or the
+brightness is too dark.</p>
+
+<p><strong>A</strong>: Upgrade your BIOS, if possible (it may have buggy ACPI). Try tuning the
+brightness up (it may have been reset after video mode change). See <em>video
+issues troubleshooting</em> suggestions in <code class="language-plaintext highlighter-rouge">syslinux.cfg</code>. Try the VESA boot
+menu option. See also
+<a href="https://web.archive.org/web/20130707054843/http://sourceforge.net/p/liberte/bugs/1">bug #1</a>.</p>
+
+<hr />
+
+<h3 id="build">Build</h3>
+<p><strong>Q</strong>: I would like to go over the emerge messages carefully.</p>
+
+<p><strong>A</strong>: See <code class="language-plaintext highlighter-rouge">/var/log/portage/emerge.log</code> and
+<code class="language-plaintext highlighter-rouge">/var/log/portage/elog/summary.log</code> in the <code class="language-plaintext highlighter-rouge">chroot</code>’ed environment.</p>
+
+<p><strong>Q</strong>: Does the build process leak build environment information to the final
+images?</p>
+
+<p><strong>A</strong>: No, the build environment is sanitized by the <code class="language-plaintext highlighter-rouge">enter</code> script, and
+some additional precautions are taken as well.</p>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src="/public/js/script.js"></script>
+  </body>
+</html>

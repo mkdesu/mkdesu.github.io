@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Security in Cables Communication &middot; DEₑSU
+    
+  </title>
+
+  
+  <link rel="canonical" href="https://dee.su/cables-security">
+  
+
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/fonts.css">
+  <link rel="stylesheet" href="/public/css/extra.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+</head>
+
+
+  <body class="theme-base-08 sidebar-overlay">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<!--input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  
+
+  <div class="sidebar-item">
+    <p>
+      <img src="/public/img/liberte-logo.png" alt="Logo" width="128" height="128" />
+    </p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+
+    
+    
+      
+        
+          <a class="sidebar-nav-item" href="/">Welcome to DEₑSU</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/liberte">Liberté Linux</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/cables">Cables Communication</a>
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2023
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">DEₑSU</a>
+            <small>Anonymouse</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="page">
+  <h1 class="page-title">Security in Cables Communication</h1>
+  <h2 id="communication-security">Communication security</h2>
+<p>In order to enable cables communication users (which includes Liberté Linux
+users) to communicate with each other stealthily, a user is assigned a
+persistent e-mail address that looks as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gb24hw2hpihnj2eftkuz42fvp3l3nzoc@5rfvhdhbw7z4dcw6.onion
+gb24hw2hpihnj2eftkuz42fvp3l3nzoc@ukeu3k5oycgabuneqgtnvselmt4yemvoilkln7jqvamvfx7ddkdq.b32.i2p
+</code></pre></div></div>
+
+<p>The <em>user</em> part of the address is a 32-character
+<a href="https://en.wikipedia.org/wiki/Base32">160-bit SHA-1 cryptographic hash</a>
+representation of user’s master certificate fingerprint
+(the <a href="https://en.wikipedia.org/wiki/SHA-1">SHA-1</a> of a self-signed CA certificate
+encompassing an <a href="https://en.wikipedia.org/wiki/RSA">RSA-8192</a> public key).</p>
+
+<p>The <em>host</em> part is the transport layer-dependent permanent hidden service ID.
+For <a href="https://www.torproject.org/">Tor</a>, which is the primary transport layer
+supported by cables communication, it is a 16-character Base32 representation
+of a half of Tor’s hidden service RSA-1024 public key fingerprint
+(an <a href="https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/HiddenServiceNames">80-bit part of SHA-1 cryptographic hash</a>),
+with an <code class="language-plaintext highlighter-rouge">.onion</code> domain suffix. For <a href="https://geti2p.net/">I2P</a>, it is a
+52-character Base32 encoding of eepSite’s ElGamal-2048 public key SHA-256
+fingerprint, with a <code class="language-plaintext highlighter-rouge">.b32.i2p</code> suffix.</p>
+
+<p>In this way, message security (inability of the attacker to reveal the message
+contents) is independent of the transport layer security (inability of the
+attacker to reveal the contents of network traffc and the location of
+correspondents). This is important because, at present, Tor appears to
+disallow “too much” security by design:</p>
+
+<ul>
+  <li>RSA-1024 is <a href="https://gitweb.torproject.org/torspec.git/plain/tor-spec.txt">universally used</a>
+as a public key cipher (<em>identity</em>, <em>onion</em>, <em>connection</em>, and <em>private</em> keys,
+and likely for SSLv3 connections as well; although long-term directory
+authority identity keys are RSA-3072).
+This RSA key size is <a href="https://www.cs.tau.ac.il/~tromer/twirl/">likely inadequate</a>
+against a resourceful adversary such as the <a href="https://www.nsa.gov/">NSA/CSS</a>.
+RSA-1024 provides only ~80 bits of security
+(see <a href="https://csrc.nist.gov/Projects/Key-Management/key-management-guidelines">NIST SP 800-57 Part 1, §5.6.1</a>).</li>
+  <li>AES-128 is used as a stream cipher, although this key size is not allowed for
+highly sensitive data protection in the government of USA
+(see <a href="https://csrc.nist.gov/csrc/media/projects/cryptographic-module-validation-program/documents/cnss15fs.pdf">CNSS Policy №15 FS №1</a>).</li>
+  <li>SHA-1 80-MSB are used as the hidden service ID, offering at most 80 bits of
+security against hidden service impersonation. The security might be weaker
+than even that, since an MSB section of a cryptographic hash does not
+automatically inherit the <a href="https://tools.ietf.org/html/rfc4270">second-preimage attack</a>
+resistance properties of the original hash.</li>
+</ul>
+
+<p>It therefore wouldn’t be wise to rely on Tor’s (or any other OR-like network,
+for that matter) transport layer security exclusively for privacy of highly
+sensitive communication. The Tor and I2P networks are, however, nevertheless
+useful as location obfuscation mechanisms.</p>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src="/public/js/script.js"></script>
+  </body>
+</html>

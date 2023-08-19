@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Contributing to Liberté Linux &middot; DEₑSU
+    
+  </title>
+
+  
+  <link rel="canonical" href="https://dee.su/liberte-contribute">
+  
+
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/fonts.css">
+  <link rel="stylesheet" href="/public/css/extra.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+</head>
+
+
+  <body class="theme-base-08 sidebar-overlay">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<!--input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  
+
+  <div class="sidebar-item">
+    <p>
+      <img src="/public/img/liberte-logo.png" alt="Logo" width="128" height="128" />
+    </p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+
+    
+    
+      
+        
+          <a class="sidebar-nav-item" href="/">Welcome to DEₑSU</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/liberte">Liberté Linux</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/cables">Cables Communication</a>
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2023
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">DEₑSU</a>
+            <small>Anonymouse</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="page">
+  <h1 class="page-title">Contributing to Liberté Linux</h1>
+  <h2 id="general-guidelines">General guidelines</h2>
+<p>Liberté Linux is an open-source project, and as such relies on community to
+aid its development. However, as a project that is often considered or used by
+people who are not necessarily computer-literate, or do not profess relevant
+knowledge and experience, it persistently generates pointless discussion and
+suggestions. When posting a news comment, reporting a problem, or suggesting
+an implementation detail, please keep the following questions in mind:</p>
+
+<ol>
+  <li>How does your proposal, issue report, or criticism help Liberté Linux?</li>
+  <li>What sets you apart from other contributors? What unique education,
+knowledge, or experience do you possess?</li>
+  <li>Have you actually done anything? Open source is about doing things, not
+socialization or online arguments.</li>
+</ol>
+
+<p>For instance, a different Internet browser is frequently suggested. This is a
+potential improvement for Liberté — however, ask yourself: are you an expert
+on browser privacy? Have you evaluated a custom Liberté image with your
+suggested alternative? Talk is cheap and predictable — what effort have you
+actually expended? What information can you bring to the table that cannot be
+located after a 2-minute online search?</p>
+
+<p>Another example is faulty hardware and/or failure to follow
+<a href="/liberte-install">installation procedures</a>.
+Fixing bugs is important, but is your problem actually a bug?</p>
+
+<ul>
+  <li>If you are not familiar with Linux or computers, have you consulted someone
+who is?</li>
+  <li>Have you tested other live Linux distributions on same hardware?</li>
+  <li>Have you tried different boot media, different format, BIOS settings?</li>
+  <li>Will the community benefit from your problem being solved?
+<em>—Also something to keep in mind when not communicating in English.</em></li>
+</ul>
+
+<p>Fixing bugs is not the same as helpdesk support, and the latter is out of
+scope for this project. Of course, better documentation could help, but again
+— have you written a guide that could benefit some users, or are you simply
+suggesting that one <em>should</em> be written?</p>
+
+<p>As an example of well-thought-of criticism, consider this
+<a href="https://www.linux.org.ru/news/security/6975111#comment-6981429">detailed suggestion</a>
+to add perfect forward secrecy and repudiability to cables communication,
+which have been indeed implemented since then. The commenter is clearly
+familiar with cases where lack of such features is problematic, and has the
+technical knowledge to generate useful discussion on the subject.</p>
+
+<h2 id="contributing-code">Contributing code</h2>
+<p>The codebase is located on <a href="https://github.com/mkdesu">GitHub</a>, which provides
+an easy and intuitive platform for contributing code and patches. Source
+code-related issues are handled in GitHub’s
+<a href="https://github.com/mkdesu/liberte/issues">issues tracker</a>.</p>
+
+<p>A first step at familiarizing oneself with Liberté Linux source code should be
+probably getting acquainted with
+<a href="https://wiki.gentoo.org/wiki/Handbook">Gentoo</a>, and
+<a href="/liberte-build">building</a> a custom image.
+Afterwards, you can expect to be able to tweak system-level and user-level
+configuration, and augment the build process (which requires shell scripting
+knowledge). With a decent Computer Science background and systems programming
+experience you should be able to dissect
+<a href="https://github.com/mkdesu/cables">cables communication</a> protocol and sources.</p>
+
+<p>Please also see whether you can contribute to resolution of the following open bugs that are related to Liberté Linux:
+<a href="https://bugs.gentoo.org/buglist.cgi?emailcc1=1&amp;emailreporter1=1&amp;resolution=---&amp;resolution=TEST-REQUEST&amp;resolution=UPSTREAM&amp;emailtype1=exact&amp;query_format=advanced&amp;emailassigned_to1=1&amp;email1=mk%40dee.su">Gentoo</a>,
+<a href="https://savannah.gnu.org/users/mkdesu">Savannah</a>,
+<a href="https://bugzilla.kernel.org/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;long_desc_type=substring&amp;cf_kernel_version_type=allwordssubstr&amp;resolution=---&amp;emailassigned_to1=1&amp;emailreporter1=1&amp;emailcc1=1&amp;emailtype1=exact&amp;email1=mk%40dee.su&amp;bugidtype=include&amp;chfieldto=Now&amp;field0-0-0=noop&amp;type0-0-0=noop">Kernel</a>,
+<a href="https://bugs.busybox.net/buglist.cgi?emailassigned_to1=1&amp;query_format=advanced&amp;emailcc1=1&amp;emailreporter1=1&amp;email1=mk%40dee.su&amp;resolution=---&amp;emailtype1=exact">Busybox</a>,
+<a href="http://www.sudo.ws/bugs/buglist.cgi?query_format=advanced&amp;emailassigned_to1=1&amp;emailreporter1=1&amp;emailcc1=1&amp;order=Importance&amp;email1=mk%40dee.su&amp;resolution=---&amp;emailtype1=exact">Sudo</a>.</p>
+
+<h2 id="reporting-bugs">Reporting bugs</h2>
+<p>If you encounter a problem with Liberté, please report providing information
+gathered with the <code class="language-plaintext highlighter-rouge">bug-report</code> script:</p>
+
+<ul>
+  <li>Acquire root access in a terminal
+(see <a href="/liberte-documentation">Documentation</a>).</li>
+  <li>Run <code class="language-plaintext highlighter-rouge">bug-report</code> in a writable directory (e.g., <code class="language-plaintext highlighter-rouge">cd /mnt/boot</code>).</li>
+  <li>Attach the generated archive to the submitted problem report.</li>
+</ul>
+
+<p>In case of installation / boot failure, make sure that your hardware is
+supported by mainstream Linux distributions when booting from the same media
+type.</p>
+
+<p>See <a href="https://www.chiark.greenend.org.uk/~sgtatham/bugs.html">How to Report Bugs Effectively</a>
+for some advice on correctly reporting software bugs.</p>
+
+<p><strong>NOTE</strong>: Hardware and network identifying information (serial numbers, IP and
+MAC addresses, ESSIDs, etc.), is automatically removed, but you are advised to
+check the submitted files manually.</p>
+
+<h2 id="support-liberté-linux">Support Liberté Linux</h2>
+<p>You can easily show your support for Liberté by writing about your experience
+with the distribution in a blog post or a news article, highlighting the
+shortcomings and suggesting new features that you would find useful.</p>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src="/public/js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Security and Anonymity in Liberté Linux &middot; DEₑSU
+    
+  </title>
+
+  
+  <link rel="canonical" href="https://dee.su/liberte-security">
+  
+
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/fonts.css">
+  <link rel="stylesheet" href="/public/css/extra.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+</head>
+
+
+  <body class="theme-base-08 sidebar-overlay">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<!--input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  
+
+  <div class="sidebar-item">
+    <p>
+      <img src="/public/img/liberte-logo.png" alt="Logo" width="128" height="128" />
+    </p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+
+    
+    
+      
+        
+          <a class="sidebar-nav-item" href="/">Welcome to DEₑSU</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/liberte">Liberté Linux</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/cables">Cables Communication</a>
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2023
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">DEₑSU</a>
+            <small>Anonymouse</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="page">
+  <h1 class="page-title">Security and Anonymity in Liberté Linux</h1>
+  <h2 id="boot-security">Boot security</h2>
+<p>Liberté was the first Linux distribution to ship with a
+<a href="https://www.static.linuxfound.org/sites/main/files/lf_uefi_secure_boot_open_platforms.pdf">Secure Boot</a>-based
+trusted boot chain. The trusted chain starts with a KEK / DB CA root, which
+can be enrolled into UEFI Secure Boot firmware. The certificate signs GRUB EFI
+images (via an embedded intermediate certificate), which verify GRUB
+configuration files and the Linux kernel. Initramfs (embedded into kernel
+image) then verifies the compressed root filesystem image.</p>
+
+<p>All verification failures are non-fatal, but need to be explicitly
+circumvented by the user, who must either disable Secure Boot, confirm
+verification failure in GRUB, or exit the debug shell in initramfs — depending
+on the chain stage at which the failure occurs.</p>
+
+<p>With regular BIOS-based Syslinux boot, only the last stage (root filesystem
+verification) is performed. However, a minimal bootstrap <code class="language-plaintext highlighter-rouge">.iso</code> image
+(lacking a compressed root filesystem) is provided, which can be burned to
+read-only media and used to boot a regular install of Liberté on writable
+media.</p>
+
+<h2 id="operational-security">Operational security</h2>
+<p>Liberté Linux maintains persistent storage on an
+<a href="https://en.wikipedia.org/wiki/Linux_Unified_Key_Setup">OTFE</a>
+volume accessible via <code class="language-plaintext highlighter-rouge">~/persist</code> — a virtual partition file that is located
+on the boot media where Liberté is installed. This volume uses AES-256 cipher
+in XTS block mode, with SHA-512 header hashing. It is best to store all
+documents on this OTFE volume. In addition, Liberté provides automatic
+on-demand mounting of permanent and removable media at <code class="language-plaintext highlighter-rouge">/media</code>. You are
+advised to employ extreme care when writing to such non-encrypted media.
+Specifically, it is recommended to avoid writing to the non-encrypted parts of
+the boot media, especially since the OTFE partition is fully resizable with
+<code class="language-plaintext highlighter-rouge">sudo otfe-resize</code>.</p>
+
+<p><a href="https://gnupg.org/">GnuPG</a> / <a href="https://www.gnupg.org/related_software/gpa/">GPA</a>
+are installed for explicit file encryption tasks. You are advised to keep the
+following rough key sizes correspondence in mind when working with keys:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Symmetric encryption</th>
+      <th>Asymmetric encryption/signing</th>
+      <th>Asymmetric signing digest</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AES-128</td>
+      <td>RSA/DSA/ELG-3072</td>
+      <td>SHA-256</td>
+    </tr>
+    <tr>
+      <td>AES-192</td>
+      <td>RSA/DSA/ELG-7680</td>
+      <td>SHA-384</td>
+    </tr>
+    <tr>
+      <td>AES-256</td>
+      <td>RSA/DSA/ELG-15360</td>
+      <td>SHA-512</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a href="https://csrc.nist.gov/Projects/Key-Management/key-management-guidelines">NIST SP 800-57 Part 1, §5.6.1</a></p>
+
+<p>Note that GnuPG tries very hard to <em>not</em> let you do what you want, especially
+w.r.t. limiting the generated asymmetric key size and the availability of
+asymmetric encryption algorithms. In this regard, GnuPG attempts to be a
+“software solution” like many Windows applications — but it is a
+non-interoperable <em>command-line</em> “solution” with many parameter switches. You
+might therefore consider evaluating other options, depending on your
+cryptographic needs.</p>
+
+<h2 id="network-security">Network security</h2>
+<p>Liberté explicitly configures selected applications and services to use Tor
+via its local proxy (where access to the proxy is additionally vetted), thus
+forcing applications to create connections to the proxy on the loopback
+interface (localhost).
+<a href="http://www.gentoo.org/doc/en/home-router-howto.xml">Netfilter IP firewall</a>
+then realizes a default-deny policy on both incoming and outgoing external
+connections. An inadvertently leaked IP address or a direct connection attempt
+do not pose a problem with this approach. The only exception to this in
+Liberté is <a href="https://geti2p.net/">I2P</a>, whose peer connections are
+transparently routed via Tor, because I2P does not support using proxies for
+this purpose, and because other methods (like dynamic library socksification)
+fail. Since I2P communication is visible to Tor exit nodes, this might pose a
+problem — however, I2P has been verified to not leak the system’s IP address
+when used in hidden mode.</p>
+
+<p>The following external traffic is explicitly allowed on the firewall:</p>
+
+<ul>
+  <li>DHCP, and <a href="https://www.torproject.org/">Tor</a> external communication to
+HTTP(S) ports (no DNS is used)</li>
+  <li>Rate-limited ping reply, the only possible response to uninitiated inbound
+traffic</li>
+  <li>User-created VPN connections to relevant ports (servers must be specified as
+IPs, use <code class="language-plaintext highlighter-rouge">tor-resolve</code>)</li>
+  <li>Unsafe Browser’s external communication (including DNS) for wireless
+hotspots registration</li>
+</ul>
+
+<p>Note that <a href="https://geti2p.net/">I2P</a> communicates with peers via Tor,
+providing additional anonymity, and enabling I2P to be used in most firewalled
+environments.</p>
+
+<p>Loopback interface connections are also partially restricted:</p>
+
+<ul>
+  <li>Only Tor and <a href="https://geti2p.net/">I2P</a> can locally connect to the hidden
+service daemon</li>
+  <li>Only main user and <a href="https://www.privoxy.org/">Privoxy</a> can locally connect to
+Tor and I2P</li>
+  <li>Only main user, cables daemon and <a href="https://www.vervest.org/htp/">HTP</a> can
+locally connect to Privoxy</li>
+</ul>
+
+<p>Some additional IPv4 protection is afforded by <code class="language-plaintext highlighter-rouge">sysctl</code> kernel parameters.</p>
+
+<p>DHCP transmissions are
+<a href="https://roy.marples.name/projects/dhcpcd/">locked down</a>:
+hostname transmittal, identification, ARP, and IPv4LL are disabled.</p>
+
+<p>NTP is the only application that potentially must communicate in the clear —
+to a known <a href="https://www.ntppool.org/">server pool</a>. NTP is not necessary
+for correct operation of Liberté, and it is currently turned off to prevent
+timestamp-based fingerprinting and MIM DoS attacks. Torified HTP adjusts the
+time very reliably — albeit with less precision. In general, Tor requires a
+correct computer clock to start up, but in Liberté this problem is
+circumvented using a consensus-based time estimate.</p>
+
+<p>In order to connect to many wireless networks, a web login via transparently
+rerouted connection is required. Liberté allows to run a browser as a
+specially designated user, for which DNS access and network traffic to common
+wireless web registration ports are not filtered. To enhance Wi-Fi privacy,
+MAC addresses of wireless interfaces are randomized during boot.</p>
+
+<h2 id="system-security">System security</h2>
+<p>Upon boot, the system is locked down by disabling the default root password
+(which is <code class="language-plaintext highlighter-rouge">liberte</code>). Other accounts, including the main user, do not have a
+password. Also, most daemons drop superuser privileges immediately after
+starting, including Tor, I2P, Privoxy, NTP, HTP, D-Bus, nscd, PC/SC, and
+cables daemon. The root console (accessible when the X server is down) is
+still available for 2 minutes after boot for troubleshooting and other
+purposes. You can restore the password by running <code class="language-plaintext highlighter-rouge">usermod -U root</code> or
+<code class="language-plaintext highlighter-rouge">passwd</code>, and then <code class="language-plaintext highlighter-rouge">su</code> to root elsewhere. Alternatively, <code class="language-plaintext highlighter-rouge">gentoo=root</code>
+boot menu option has the same effect. Most of the root filesystem is
+read-only, and only selected directories are writable.</p>
+
+<p>All the installed software is compiled with the
+<a href="https://wiki.gentoo.org/wiki/Hardened/Toolchain">Hardened Gentoo toolchain</a>,
+which affords automatic protection against stack smashing attacks (SSP) and
+enables application address space layout randomization (ASLR) in the hardened
+<a href="https://en.wikipedia.org/wiki/PaX">PaX</a> kernel.
+<a href="https://grsecurity.net/">Grsecurity</a> is also enabled.</p>
+
+<p>An abrupt extraction of the removable boot device results in immediate RAM
+wipe and power-off. Upon normal reboot / shutdown sequences, RAM is also wiped
+to prevent <a href="https://en.wikipedia.org/wiki/Cold_boot_attack">cold boot attacks</a>.
+Maximal RAM-clearing range is achieved by allocating memory after a
+<a href="https://wiki.archlinux.org/index.php/Kexec">kexec</a>-based boot with a minimal
+kernel.</p>
+
+<p>In X server environment, screen can be locked with <code class="language-plaintext highlighter-rouge">Win-L</code> key sequence, or
+via panel menu. When the screen is locked, a logo image covers the whole
+screen, and mouse / keyboard are grabbed until the correct password is
+entered, followed by the <code class="language-plaintext highlighter-rouge">Enter</code> key (during the first lock attempt, the
+user is queried for a password, and its hash is retained in the persistent
+storage). The <em>VT Switch</em> (<code class="language-plaintext highlighter-rouge">Ctrl-Alt-F*</code>) and <em>Zap</em> (<code class="language-plaintext highlighter-rouge">Ctrl-Alt-Bksp</code>) key
+sequences are permanently disabled in X server configuration, <em>SysRq</em>
+(<code class="language-plaintext highlighter-rouge">SysRq-*</code>) kernel interaction key sequences are disabled, and ACPI
+power-off events are ignored until the screen is unlocked. Any tray
+notification events are similarly delayed.</p>
+
+<h2 id="build-and-release-security">Build and release security</h2>
+<p>Liberté Linux releases are signed with a designated PGP key (DSA-3072). During
+the build process, all downloaded files are automatically verified:</p>
+
+<ul>
+  <li>Initial Gentoo snapshots are verified against their
+<a href="https://wiki.gentoo.org/wiki/Project:RelEng#Release_security_and_signing">PGP signatures</a>
+(portage: RSA-4096) and signed checksums (stage3: RSA-4096, MD5 + SHA-1)</li>
+  <li>Kernel patches are verified against their respective checksums (SHA-256)</li>
+  <li>During incremental builds, Gentoo portage tree is updated using
+<code class="language-plaintext highlighter-rouge">emerge-webrsync</code>, which verifies snapshots against their PGP signatures
+(RSA-4096); <code class="language-plaintext highlighter-rouge">rsync</code> is not used  since it lacks the verification mechanism</li>
+  <li>Individual downloaded packages are verified against checksums (RMD-160 +
+SHA-1 + SHA-256) that are kept in the previously verified Gentoo portage tree</li>
+  <li>Custom ebuilds afford the same verification procedure as the ebuilds in
+portage</li>
+</ul>
+
+<p>The fingerprints for all downloaded signing keys, as well as the kernel
+patches checksums, are located in the Liberté source tree.</p>
+
+<p><strong>NOTE</strong>: Currently, updates of
+<a href="https://www.smartmontools.org/">SMART drives</a> and
+<a href="https://geti2p.net/en/faq#subscriptions">I2P hosts</a> lists are not verified,
+since the corresponding released updates are not signed. Instead, the
+structure of these lists is verified with regular expressions after each
+update. The <a href="https://geti2p.net/en/faq#manual_reseed">I2P netDb</a> router info
+files supplied with Liberté are analyzed using I2P’s
+<code class="language-plaintext highlighter-rouge">net.i2p.data.RouterInfo</code> utility.</p>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src="/public/js/script.js"></script>
+  </body>
+</html>

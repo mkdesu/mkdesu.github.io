@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Liberté Linux Documentation &middot; DEₑSU
+    
+  </title>
+
+  
+  <link rel="canonical" href="https://dee.su/liberte-documentation">
+  
+
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/fonts.css">
+  <link rel="stylesheet" href="/public/css/extra.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+</head>
+
+
+  <body class="theme-base-08 sidebar-overlay">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<!--input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  
+
+  <div class="sidebar-item">
+    <p>
+      <img src="/public/img/liberte-logo.png" alt="Logo" width="128" height="128" />
+    </p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+
+    
+    
+      
+        
+          <a class="sidebar-nav-item" href="/">Welcome to DEₑSU</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/liberte">Liberté Linux</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/cables">Cables Communication</a>
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2023
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">DEₑSU</a>
+            <small>Anonymouse</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="page">
+  <h1 class="page-title">Liberté Linux Documentation</h1>
+  <h2 id="usage">Usage</h2>
+<p>This page describes the general usage scenarios, focusing mainly on security
+and anonymity features. Using Liberté Linux should be otherwise intuitive
+(more so if you are familiar with Linux, but not necessarily).</p>
+
+<h3 id="booting-and-shutting-down">Booting and Shutting Down</h3>
+<p>Find out how to enable booting from USB, which may be as simple as pressing
+<code class="language-plaintext highlighter-rouge">Esc</code> during POST, and choosing the corresponding option. Press <code class="language-plaintext highlighter-rouge">Tab</code> in
+Liberté boot menu to change the kernel options. The settings may be made
+permanent in <code class="language-plaintext highlighter-rouge">liberte/boot/…</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">syslinux/syslinux.cfg</code> — for BIOS boot</li>
+  <li><code class="language-plaintext highlighter-rouge">grub/grub.cfg</code> — for (U)EFI boot</li>
+</ul>
+
+<p>Comments in these configuration files summarize the effects of various boot
+options, some of which are listed at the end of this section.</p>
+
+<p>If it is the first time that you boot Liberté, you will be asked to provide a
+new password for encrypting the OTFE volume (located in the <code class="language-plaintext highlighter-rouge">otfe</code>
+directory). You will need to enter that password upon each subsequent boot
+sequence.</p>
+
+<p>During the first boot, <a href="/cables">cables communication</a>
+certificates will be generated, too. It is a time-intensive operation due to
+the asymmetric key size, and typically takes a few minutes.</p>
+
+<p>If possible, use proper shutdown procedures (via logout menu or short
+power-off button press) which ensure clean states for all writable filesystems
+(including the encrypted volume). It is, however, possible to just pull out
+the USB stick — the computer will immediately power off. In either case, RAM
+is cleared just prior to the actual shutdown / reboot.</p>
+
+<h3 id="encrypted-volume">Encrypted Volume</h3>
+<p>Picking a secure password for the encrypted volume is extremely important,
+since all user’s persistent data is kept on this virtual partition, accessible
+via <code class="language-plaintext highlighter-rouge">~/persist</code> directory. Do not take the various security “experts”
+(typically, trained system administration monkeys) too seriously, and consider
+writing the (long) passphrase down on something that is secured and that you
+will not carry with the boot media.</p>
+
+<p>You should make regular backups of the <code class="language-plaintext highlighter-rouge">.vol</code> file in the <code class="language-plaintext highlighter-rouge">otfe</code> directory
+(the volume header is already backed up in the same directory). Erasing the
+<code class="language-plaintext highlighter-rouge">.vol</code> file is equivalent to making a fresh install of Liberté Linux.
+Alternatively, upgrading Liberté does not affect the encrypted volume, and is
+backward-compatible with the volume contents.</p>
+
+<p>Removing <code class="language-plaintext highlighter-rouge">settings/config.tar.xz</code> on the volume resets the user
+configuration in <code class="language-plaintext highlighter-rouge">~/config</code> — remove the file and pull out the USB stick
+after pressing <code class="language-plaintext highlighter-rouge">Win-S</code> to achieve that. Adding <code class="language-plaintext highlighter-rouge">nosettings</code> to the boot
+options temporarily inhibits extraction and saving of user configuration. Note
+that important data such as cables identity and mailboxes / message queues,
+hashed passwords, encryption keys, etc. is stored directly in <code class="language-plaintext highlighter-rouge">~/persist</code>,
+and should not be affected when user configuration is removed. Configuration
+exclusion patterns can be customized in <code class="language-plaintext highlighter-rouge">~/config/persist.excludes</code>.</p>
+
+<p>The volume can be transparently resized by running <code class="language-plaintext highlighter-rouge">sudo otfe-resize</code> in a
+terminal.</p>
+
+<h3 id="unencrypted-media">Unencrypted Media</h3>
+<p>If you only modify data on the encrypted volume, no traces will be left on the
+computer after shutdown. However, all accessible media (including removable
+disks) are available at <code class="language-plaintext highlighter-rouge">/media</code>. Opening a subdirectory actually mounts the
+corresponding disk or partition. Each NTFS filesystem has two possible mount
+points: read-write and read-only. It is advised to use the read-only mount
+point in order to avoid leaving traces on the filesystem. Note that if the
+system has been hibernated in Windows, only the read-only mount point is
+accessible. Other journaling filesystems (<code class="language-plaintext highlighter-rouge">ext3</code>, <code class="language-plaintext highlighter-rouge">ext4</code>) are always
+mounted read-only.</p>
+
+<p>Whenever necessary, use secure file deletion (<code class="language-plaintext highlighter-rouge">srm -f</code>) to erase files on
+unencrypted filesystems. Multiple rewrites are
+<a href="https://www.nber.org/sys-admin/overwritten-data-guttman.html">unnecessary</a> and
+misguided due to on-controller write caching — just use the fast rewrite mode.
+Note that modern flash memory devices with
+<a href="https://en.wikipedia.org/wiki/Wear_leveling">wear leveling</a>
+(as well as modern HDDs with automatic bad sectors remapping)
+<a href="https://www.usenix.org/legacy/event/hotsec08/tech/full_papers/czeskis/czeskis_html/">cannot guarantee</a>
+such secure file deletion.</p>
+
+<p>Always synchronize pending writes (<code class="language-plaintext highlighter-rouge">Win-S</code>) before extracting removable
+media.</p>
+
+<h3 id="network-connectivity">Network Connectivity</h3>
+<p>Wireless MAC addresses are automatically changed during boot. If you are
+connecting via an Ethernet cable, and DHCP IP address assignment does not
+depend on MAC being left intact, you can change the latter by running <code class="language-plaintext highlighter-rouge">sudo
+mac-randomize</code> in a terminal.</p>
+
+<p>Some wireless networks (mainly unsecured hotspots, but sometimes secured
+networks with guest authentication) require web registration before full
+connectivity is available. Since all network traffic in Liberté is routed via
+Tor, which requires such connectivity to operate, this situation is
+problematic. The solution is to run the <em>Unsafe Browser</em> (which bypasses the
+firewall) in order to register. Some networks also require bringing the
+connection down and up after the registration. Needless to say, <em>Unsafe
+Browser</em> is unsafe, <em>—K.O.</em></p>
+
+<p><strong>When setting up a VPN connection</strong> (including PPTP that is used by some
+ISPs)<strong>, the server address must be given as a numeric IP address.</strong> Use
+<code class="language-plaintext highlighter-rouge">tor-resolve</code> in console to resolve a hostname without leaking DNS requests.
+Note that unsafe browser’s traffic goes through VPN circuit, if one has been
+set up (assuming default routes).</p>
+
+<p><strong>NOTE</strong>: I2P support is currently experimental and is disabled by default. To
+enable I2P (for both browsing and cables communication), add <code class="language-plaintext highlighter-rouge">i2p</code> to the
+kernel parameters in the boot menu, or modify the relevant entry in
+<code class="language-plaintext highlighter-rouge">syslinux.cfg</code>.</p>
+
+<h3 id="browsing-and-instant-messaging">Browsing and Instant Messaging</h3>
+<p>Do not visit unfamiliar sites, since they expose the browser to local
+exploits. Enable scripting only for trusted sites. Connecting to non-<code class="language-plaintext highlighter-rouge">https</code>
+non-<code class="language-plaintext highlighter-rouge">onion</code> sites (i.e., most websites) exposes the traffic on Tor exit
+node. Same is true for non-SSL connections to IRC and IM servers.</p>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">https</code>/SSL communication is only secure between you and the
+server. E.g., administrative access to an IRC server allows to record all
+private messages and channel communication where one of the participants is
+connected to that server.</p>
+
+<h3 id="internationalization">Internationalization</h3>
+<p>The <em>Language and Time Zone</em> applet, accessible via <em>Preferences</em> in the start
+menu, provides a list of UI locales, timezones, and keyboard layouts (e.g.,
+German <em>qwertz</em> or French <em>azerty</em>). Re-login into the X session to activate
+the changes.</p>
+
+<p>Input languages can be selected by clicking on the <em>uim</em> icons near the tray.
+Note the difference between <em>languages</em> and <em>keyboard layouts</em> above.</p>
+
+<h3 id="locking-the-system">Locking the System</h3>
+<p>In the X server environment, the system can be locked with <code class="language-plaintext highlighter-rouge">Win-L</code> key
+sequence, by running <code class="language-plaintext highlighter-rouge">xlock</code> via the menu, or by closing the laptop lid.
+During the first lock attempt, you will be prompted for a password to
+permanently store as a secure hash. To unlock, blindly type the password
+preceded and followed by the <code class="language-plaintext highlighter-rouge">Enter</code> key. After successfully unlocking the
+system, all delayed tray notification events (if any) will be activated. To
+reset the password, remove <code class="language-plaintext highlighter-rouge">~/persist/security/lock/passwd.*</code>.</p>
+
+<h3 id="key-sequences">Key Sequences</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Keybinding in Openbox</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Win-E</code>, <code class="language-plaintext highlighter-rouge">Win-T</code>, <code class="language-plaintext highlighter-rouge">Win-C</code></td>
+      <td>File explorer, Terminal, Calculator</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Win-L</code>, <code class="language-plaintext highlighter-rouge">Win-D</code>, <code class="language-plaintext highlighter-rouge">Display</code></td>
+      <td>Lock screen, Show / restore desktop, Monitor(s) settings</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Win-S</code>, <code class="language-plaintext highlighter-rouge">Win-Escape</code></td>
+      <td>Synchronize media, Logout</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Win-F1</code>, <code class="language-plaintext highlighter-rouge">-F2</code>, …</td>
+      <td>Show desktop №1, 2, …</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Ctrl</code> / <code class="language-plaintext highlighter-rouge">Shift-Alt-Left</code> / <code class="language-plaintext highlighter-rouge">Right</code></td>
+      <td>Switch / send window to left / right desktop</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Print</code> / <code class="language-plaintext highlighter-rouge">Alt-Print</code></td>
+      <td>Take desktop / window snapshot</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Mail</code>, <code class="language-plaintext highlighter-rouge">WWW</code></td>
+      <td>Mail user agent, Internet browser</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">AudioMute</code></td>
+      <td>Toggle <em>master</em> audio output</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">AudioRaiseVolume</code> / <code class="language-plaintext highlighter-rouge">AudioLowerVolume</code></td>
+      <td>Raise / lower <em>master</em> audio volume by 5%</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Alt-Tab</code>, <code class="language-plaintext highlighter-rouge">Alt-Escape</code>, <code class="language-plaintext highlighter-rouge">Alt-F4</code></td>
+      <td>Switch windows, Minimize window, Close window</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Ctrl-Space</code></td>
+      <td>Toggle selected language (<em>uim</em> keybinding)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="boot-options">Boot Options</h3>
+<p>The <code class="language-plaintext highlighter-rouge">gentoo=</code> prefix below is optional, and can combine several parameters
+(e.g., <code class="language-plaintext highlighter-rouge">gentoo=nox,root</code>).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Boot option</th>
+      <th>Effect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">readonly</code></td>
+      <td>Set read-only access for the relevant boot media partition (disabling persistence)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[no]toram</code></td>
+      <td>Copy SquashFS image to RAM (on by default in <code class="language-plaintext highlighter-rouge">.iso</code> images)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">blacklist=module,…</code></td>
+      <td>Comma-separated list of kernel modules to blacklist from autoloading</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gentoo=root</code></td>
+      <td>Unlock root password (<code class="language-plaintext highlighter-rouge">liberte</code>) and disable root console timeout</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gentoo=xvesa</code></td>
+      <td>Force VESA video driver in Xorg</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gentoo=xfb</code></td>
+      <td>Force framebuffer video driver in Xorg (useful for EFI when VESA is unavailable)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gentoo=i2p</code></td>
+      <td>Enable I2P</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gentoo=nosettings</code></td>
+      <td>Do not save/restore user-level application settings in <code class="language-plaintext highlighter-rouge">~/persist/settings/config.tar.xz</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gentoo=nox</code></td>
+      <td>Disable X server configuration (manual <code class="language-plaintext highlighter-rouge">startx</code> may still work)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gentoo=nologo</code></td>
+      <td>Disable desktop background logo (includes the lock screen)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gentoo=noanon</code></td>
+      <td>Non-anonymous clearnet mode with separate user settings</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">bridges=IP[:port],…</code></td>
+      <td>Comma-separated list of Tor bridges to use instead of direct connections to relays (default port is <code class="language-plaintext highlighter-rouge">443</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="troubleshooting">Troubleshooting</h3>
+<p>Root access is possible during the first 2 minutes after boot. Switching to
+the second terminal (logout to shell, <code class="language-plaintext highlighter-rouge">Alt-F2</code>) and typing <code class="language-plaintext highlighter-rouge">okroot</code> during
+that timeframe enables the root user’s password: <code class="language-plaintext highlighter-rouge">liberte</code>. After that,
+switch to the first terminal and launch X server (<code class="language-plaintext highlighter-rouge">Alt-F1</code>, <code class="language-plaintext highlighter-rouge">Ctrl-D</code>). You
+can now become root using <code class="language-plaintext highlighter-rouge">su -</code> in a terminal. Same effect can be achieved
+by adding <code class="language-plaintext highlighter-rouge">root</code> to the boot menu options (after pressing <code class="language-plaintext highlighter-rouge">Tab</code>).</p>
+
+<p>The <em>Administrator Console</em> entry in Liberté boot menu does not configure or
+start the X server, and simplifies root access by making the procedure above
+unnecessary.</p>
+
+<p>Adding <code class="language-plaintext highlighter-rouge">debug</code> to the boot options runs the shell in initramfs script right
+after the modules loading phase, where you can check why the boot media cannot
+be mounted, for example.</p>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src="/public/js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Peer Review of Liberté Linux &middot; DEₑSU
+    
+  </title>
+
+  
+  <link rel="canonical" href="https://dee.su/liberte-peer-review">
+  
+
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/fonts.css">
+  <link rel="stylesheet" href="/public/css/extra.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+</head>
+
+
+  <body class="theme-base-08 sidebar-overlay">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<!--input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  
+
+  <div class="sidebar-item">
+    <p>
+      <img src="/public/img/liberte-logo.png" alt="Logo" width="128" height="128" />
+    </p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+
+    
+    
+      
+        
+          <a class="sidebar-nav-item" href="/">Welcome to DEₑSU</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/liberte">Liberté Linux</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/cables">Cables Communication</a>
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2023
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">DEₑSU</a>
+            <small>Anonymouse</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="page">
+  <h1 class="page-title">Peer Review of Liberté Linux</h1>
+  <h2 id="peer-review">Peer review</h2>
+<p><img src="/public/img/serious-cat.jpg" alt="I are serious cat and I endorse this message" width="188" height="150" class="callout" />
+For a security-oriented distribution such as Liberté Linux, peer review of its
+capability to resist malicious attacks is a highly desirable feature. If you
+possess the relevant expertise, you are welcome to criticize Liberté’s design
+or implementation by sending me an email. The reason that I ask to send an
+email is that right now, this site’s engine does not have anonymous edits
+turned on. If your arguments are reasonable, they will appear here on a short
+notice (with a reply).</p>
+
+<p>Below, some specific pivotal potential vulnerabilities worthy of exploration
+are listed.</p>
+
+<h2 id="cables-communication">Cables communication</h2>
+<p><img src="/public/img/kitten_with_cables.jpg" alt="In ur cables" width="198" height="150" class="callout" />
+Since the 2011.1 release, Liberté implements <a href="/cables">secure and anonymous
+communication</a> using email-like addresses. Potential
+(i.e., undiscovered) weaknesses of this cables exchange system may include:</p>
+
+<ul>
+  <li>Circumventing proper message authentication via a communication protocol
+fault</li>
+  <li>Misrepresenting another user (as cable sender or receiver)</li>
+  <li>Convincing the sender to encrypt a cable for unintended recipient (e.g.:
+certificates chain verification issue, multiple certificates in a single
+<code class="language-plaintext highlighter-rouge">pem</code> file, …)</li>
+  <li>Exploiting a remote system via a specially formatted certificate / message</li>
+  <li>Known-plaintext attack by generating specially crafted message receipt
+requests (e.g.: padding doesn’t work as expected)</li>
+  <li>Susceptibility to traffic analysis</li>
+</ul>
+
+<p>and similar vulnerabilities.</p>
+
+<h2 id="code-audit">Code audit</h2>
+<p>If you have performed an audit of source code in Liberté Linux, please send me
+the revision or release tag at which you looked, and your review (or a link to
+one), and I will post / link to it here.</p>
+
+<ul>
+  <li>“Baal,” <a href="/assets/baal.html">Thoughts on undercover communication</a>, 26 Aug. 2011.</li>
+</ul>
+
+<h2 id="bibliography">Bibliography</h2>
+<p>Some useful references are listed below.</p>
+
+<ol>
+  <li>P. James,
+<a href="https://ro.ecu.edu.au/ism/51/">Secure Portable Execution Environments: A Review of Available Technologies</a>,
+<em>Proc. AISM 2008</em>, pp. 70–86, 1–3 Dec. 2008, Perth, AU-WA.</li>
+  <li>J. A. Halderman et al.,
+<a href="https://doi.org/10.1145/1506409.1506429">Lest We Remember: Cold-Boot Attacks on Encryption Keys</a>,
+<em>Commun. ACM</em>, 52(5), pp. 91–98, May 2009.</li>
+  <li>J. Chow et al.,
+<a href="https://www.usenix.org/legacy/events/sec04/tech/chow.html">Understanding Data Lifetime via Whole System Simulation</a>,
+<em>Proc. USENIX Security ‘04</em>, pp. 321–336, 9–13 Aug. 2004, San Diego, US-CA.</li>
+  <li>C. Wright et al.,
+<a href="https://doi.org/10.1007/978-3-540-89862-7_21">Overwriting Hard Drive Data: The Great Wiping Controversy</a>,
+<em>Proc. ICISS 2008</em>, LNCS 5352, pp. 243–257, 16–20 Dec. 2008, Hyderabad, IN-AP.</li>
+  <li>K. Bauer et al.,
+<a href="https://doi.org/10.1145/1314333.1314336">Low-Resource Routing Attacks Against Tor</a>,
+<em>Proc. WPES ‘07</em>, pp. 11–20, 29 Oct. 2007, Alexandria, US-CA.</li>
+  <li>D. Herrmann et al.,
+<a href="https://doi.org/10.1145/1655008.1655013">Website Fingerprinting: Attacking Popular Privacy Enhancing Technologies with the Multinomial Naïve-Bayes Classifier</a>,
+<em>Proc. CCSW ‘09</em>, pp. 31–41, 13 Nov. 2009, Chicago, US-IL.</li>
+  <li>V. Brik et al.,
+<a href="https://doi.org/10.1145/1409944.1409959">Wireless Device Identification with Radiometric Signatures</a>,
+<em>Proc. MobiCom ‘08</em>, pp. 116–127, 14–19 Sep. 2008, San Francisco, US-CA.</li>
+  <li>M. G. Kuhn,
+<a href="https://doi.org/10.1007/11423409_7">Electromagnetic Eavesdropping Risks of Flat-Panel Displays</a>,
+<em>Proc. PET 2004</em>, LNCS 3424, pp. 88–107, 26–28 May 2004, Toronto, CA-ON.</li>
+  <li>M. Vuagnoux, S. Pasini,
+<a href="https://infoscience.epfl.ch/record/140523">Compromising Electromagnetic Emanations of Wired and Wireless Keyboards</a>,
+<em>Proc. USENIX Security ‘09</em>, pp. 1–16, 10–14 Aug. 2009, Montréal, CA-QC.</li>
+  <li>L. Zhuang et al.,
+<a href="https://doi.org/10.1145/1609956.1609959">Keyboard Acoustic Emanations Revisited</a>,
+<em>ACM T Inform Syst Se</em>, 13(1), pp. 3:1–26, Oct. 2009.</li>
+  <li>M. Backes et al.,
+<a href="https://doi.org/10.1109/SP.2009.20">Tempest in a Teapot: Compromising Reflections Revisited</a>,
+<em>Proc. IEEE SP 2009</em>, pp. 315–327, 17–20 May 2009, Oakland, US-CA.</li>
+</ol>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src="/public/js/script.js"></script>
+  </body>
+</html>

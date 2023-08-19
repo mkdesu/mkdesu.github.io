@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Cables Communication Documentation &middot; DEₑSU
+    
+  </title>
+
+  
+  <link rel="canonical" href="https://dee.su/cables-documentation">
+  
+
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/fonts.css">
+  <link rel="stylesheet" href="/public/css/extra.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+</head>
+
+
+  <body class="theme-base-08 sidebar-overlay">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<!--input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  
+
+  <div class="sidebar-item">
+    <p>
+      <img src="/public/img/liberte-logo.png" alt="Logo" width="128" height="128" />
+    </p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+
+    
+    
+      
+        
+          <a class="sidebar-nav-item" href="/">Welcome to DEₑSU</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/liberte">Liberté Linux</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/cables">Cables Communication</a>
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2023
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">DEₑSU</a>
+            <small>Anonymouse</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="page">
+  <h1 class="page-title">Cables Communication Documentation</h1>
+  <h2 id="installation">Installation</h2>
+<p>Deployment instructions are given in project’s
+<a href="https://github.com/mkdesu/cables/wiki/deployment">GitHub Wiki</a>.</p>
+
+<h2 id="correct-usage-patterns">Correct usage patterns</h2>
+<p>Direct user-to-user cables communication is the flagship message exchange
+feature of Liberté Linux. Security and authenticity of the messages is
+independent of the security of the underlying network layer (i.e., Tor), but
+that layer’s obfuscation aspects are nevertheless useful for hiding the
+existence of message exchange. In order to take advantage of cables
+communication, launch a mail user agent — your email-like address will be
+already configured in. Put similar addresses in <code class="language-plaintext highlighter-rouge">To:</code>, <code class="language-plaintext highlighter-rouge">Cc:</code>, and/or
+<code class="language-plaintext highlighter-rouge">Bcc:</code> fields when sending messages. Sending the message queues it for
+delivery. Whenever actual delivery is accomplished to one of the recepients,
+you will receive a corresponding delivery receipt (or, after several days, a
+timeout notice). Encryption and verification of messages and message receipts
+is handled transparently.</p>
+
+<p>When using cables communication, avoid compromising the address book. Such
+compromise exposes the user to denial-of-service attacks (since knowing the
+username makes the cable service on the host accessible), and, in case of
+frequent power-ons, to the risk of exposing the physical location with traffic
+analysis (by pinging the hidden service).</p>
+
+<p>Due to the latter risk, it is preferable to have the computer connected to the
+network for as long periods of time as possible. This provides the additional
+benefit of less communication failures and of being associated with the same
+<a href="https://www.torproject.org/docs/faq#EntryGuards">entry guards</a>
+that were picked during Tor startup.</p>
+
+<p>If it is not possible to have the computer constantly connected to the same
+network, make sure to power it off when not connected to a hotspot (so that
+the network card’s new MAC address cannot be associated with a previous one).
+Connecting to hotspots from different physical locations using commodity
+hardware also helps in resisting fingerprinting for the purpose of traffic
+analysis.</p>
+
+<p>Note that it may take up to a few hours for Tor and I2P networks to recognize
+a Tor hidden service / I2P eepSite (the endpoint of cables communication
+protocol) on a new IP address.</p>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src="/public/js/script.js"></script>
+  </body>
+</html>

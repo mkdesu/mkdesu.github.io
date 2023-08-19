@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Liberté Linux &middot; DEₑSU
+    
+  </title>
+
+  
+  <link rel="canonical" href="https://dee.su/liberte">
+  
+
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/fonts.css">
+  <link rel="stylesheet" href="/public/css/extra.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+</head>
+
+
+  <body class="theme-base-08 sidebar-overlay">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<!--input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  
+
+  <div class="sidebar-item">
+    <p>
+      <img src="/public/img/liberte-logo.png" alt="Logo" width="128" height="128" />
+    </p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+
+    
+    
+      
+        
+          <a class="sidebar-nav-item" href="/">Welcome to DEₑSU</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item active" href="/liberte">Liberté Linux</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/cables">Cables Communication</a>
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2023
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">DEₑSU</a>
+            <small>Anonymouse</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="page">
+  <h1 class="page-title">Liberté Linux</h1>
+  <ul>
+  <li><a href="/liberte-install">Install</a></li>
+  <li><a href="/liberte-build">Build</a></li>
+  <li><a href="/liberte-documentation">Documentation</a></li>
+  <li><a href="/liberte-security">Security</a></li>
+  <li><a href="/liberte-motivation">Philosophy</a></li>
+  <li><a href="/liberte-peer-review">Peer Review</a></li>
+  <li><a href="/liberte-logo">Artwork</a></li>
+  <li><a href="/liberte-screenshots">Screenshots</a></li>
+  <li><a href="/liberte-faq">FAQ</a></li>
+  <li><a href="/liberte-contribute">Support</a></li>
+</ul>
+
+<h2 id="summary">Summary</h2>
+
+<p><strong>Liberté Linux</strong> is a <a href="/liberte-security">secure</a>, reliable,
+lightweight and <a href="/liberte-documentation">easy to use</a>
+<a href="https://www.gentoo.org/">Gentoo</a>-based LiveUSB/SD/CD Linux distribution with
+the primary purpose of enabling anyone to communicate safely and covertly in
+<a href="/liberte-motivation">hostile environments</a>. Whether you are a
+privacy advocate, a dissident, or a sleeper agent, you are equally likely to
+find Liberté Linux useful as a mission-critical communication aid.</p>
+
+<p><strong>PLEASE NOTE</strong>: Latest release of Liberté Linux is old, and you should use it
+only if you understand the security implications. A new release of Liberté, if
+created, will have significantly different usage objectives.</p>
+
+<p>Why should you choose Liberté over alternative open-source, commercial, or military systems?</p>
+
+<ul>
+  <li><strong>Unobtrusiveness</strong>:
+Liberté <a href="/liberte-install">promptly installs</a> as a regular
+directory on a USB/SD key, taking ≈210 MiB of disk space, and not interfering
+with other files present on the media. Everything is preconfigured — the only
+user input required during boot is the encrypted volume password. System
+requirements are just as lightweight: ≈192 MiB of RAM are entirely sufficient
+for unrestricted desktop use.</li>
+  <li><strong>Security</strong>:
+Liberté Linux  is shipped with the <a href="https://wiki.gentoo.org/wiki/Project:Hardened">Hardened Gentoo</a>
+kernel, which includes all <a href="https://grsecurity.net/">grsecurity/PaX</a> security
+enhancements — radically improving system’s resistance to software exploits.
+Measures like service privileges separation provide additional protection.</li>
+  <li><strong>Persistence</strong>:
+All persistent changes are kept in a secure
+<a href="https://gitlab.com/cryptsetup/cryptsetup">LUKS</a>/<a href="https://en.wikipedia.org/wiki/FreeOTFE">OTFE</a>
+volume, easily accessible from any operating system. This includes application
+settings that are archived upon shutdown, as well as any documents explicitly
+stored in the encrypted volume. The OTFE volume is just a file on the boot
+media that can be copied, backed up, or transparently resized from inside
+Liberté.</li>
+  <li><strong>Communication</strong>:
+You can securely, reliably and covertly communicate with other Liberté Linux
+users via the familiar e-mail interface, using serverless <a href="/cables">cables
+communication</a> — a
+<a href="https://en.wikipedia.org/wiki/Cryptographic_Message_Syntax">CMS</a>
+standard-based stateless messaging protocol featuring repudiability and
+perfect forward secrecy.</li>
+  <li><strong>Anonymity</strong>:
+All networking activities like browsing and chatting are automatically
+<a href="https://www.torproject.org/">Torified</a>, with <a href="https://geti2p.net/">I2P</a>
+locations transparently available as well. After the system receives a network
+address, the only external traffic it emits is encrypted communication on
+HTTP(S) ports (used by Tor). No other traffic is sent — not even DNS requests.
+I2P traffic is routed through Tor, too: you will be able to use I2P even
+behind the most restrictive firewalls. In addition, a special <em>Unsafe Browser</em>
+is available for the express purpose of registration in open Wi-Fi hotspots,
+if necessary. Liberté can be also booted in non-anonymous mode, with all other
+security features left intact.</li>
+  <li><strong>Invariance</strong>:
+Besides the encrypted volume on the boot media, Liberté leaves no traces in
+the system without explicit user consent (such as manually creating files on
+external automounted media). Moreover, all volatile memory is thoroughly
+erased upon shutdown in order to prevent
+<a href="https://en.wikipedia.org/wiki/Cold_boot_attack">cold boot attacks</a> — whether
+an orderly shutdown, or an immediate one due to abrupt removal of the boot
+media.</li>
+  <li><strong>Privacy</strong>:
+Many other privacy-enhancing features, such as wireless MAC addresses
+randomization and uniform HTTP headers, are automatically employed in order to
+prevent pinpointing your activities.</li>
+  <li><strong>Desktop</strong>:
+More mundane yet useful applications, like document and image processing, are
+included as well. Do not be put off by its small image size — Liberté Linux is
+a fully capable distribution with
+<a href="http://double.co.nz/video_test/">HTML5 video</a> support in the browser, file
+managers and chat plugins, audio players, a multitude of multilingual fonts,
+full application interface and keyboard localization, and much more.</li>
+  <li><strong>Integrity</strong>:
+The transparent and readily reproducible deployment image build process
+employs rigorous verification of the complete chain of trust of all downloaded
+archives, packages and signature keys. All software in the image, without
+exception, is built from source — there is no reliance on externally compiled
+binary executables. With reasonable competence, you can quickly
+<a href="/liberte-build">master</a> a customized image yourself.</li>
+</ul>
+
+<p>Feel free to explore the project site for more in-depth discussion of
+<a href="/liberte-security">security</a>, privacy, and
+<a href="/liberte-motivation">design</a> choices of Liberté Linux.
+If you are fluent in Russian, the following
+<a href="https://lenta.ru/conf/kammerer/">Lenta.Ru online press-conference</a> by me and
+<a href="https://xakep.ru/2011/06/15/55953/">«Xakep» journal article</a> by
+<a href="https://ivinside.blogspot.com/2011/02/liberte-linux.html">ivinside</a> may
+provide more insight on some of the principles of anonymous communication.</p>
+
+<p>A note for developers: Liberté can also serve as a
+<a href="/liberte-build">robust framework</a> for mastering Gentoo-based
+LiveUSBs/CDs. The build process is fully automated with incremental build
+support, and is more mature and reliable than most of Gentoo’s own outdated
+<a href="http://wolf31o2.org/">LiveCD tools</a>. Gentoo is an extremely flexible
+distribution for safely generating custom live media from source — for
+instance, Liberté does not contain Portage, GCC, Perl or Python.</p>
+
+<ul>
+  <li>Project:
+<a href="https://github.com/mkdesu/liberte">GitHub</a>
+(<a href="https://github.com/mkdesu/liberte/blob/master/doc/changelog.txt">changelog</a>,
+<a href="https://github.com/mkdesu/liberte/issues">issues</a>),
+<a href="https://sourceforge.net/projects/liberte/">SourceForge</a>
+(<a href="https://sourceforge.net/projects/liberte/files/">files</a>),
+<a href="https://distrowatch.com/liberte">DistroWatch</a></li>
+  <li>Updates:
+<a href="https://sourceforge.net/news/?group_id=320084">SourceForge</a>,
+<a href="http://freecode.com/projects/liberte">Freecode</a>,
+<a href="https://distrowatch.com/?distribution=liberte">DistroWatch</a></li>
+</ul>
+
+<h2 id="media-coverage">Media Coverage</h2>
+<ul>
+  <li><a href="https://meduza.io/cards/kak-podgotovitsya-k-novoy-atake-na-internet">Meduza cards</a>,
+<a href="https://www.facebook.com/alexander.borzenko.3">Alexander Borzenko</a> (Ed.), 4.03.2015.</li>
+  <li><a href="http://www.therunet.com/articles/3343-chto-nuzhno-znat-ob-anonimnoy-seti-tor">theRunet quotes</a>,
+<a href="https://www.facebook.com/konstantin.benyumov">Konstantin Benyumov</a>, Indira Pasko (Ed.), 24.07.2014.</li>
+  <li><a href="https://lenta.ru/articles/2013/04/26/anonymity">Lenta.Ru interview</a>,
+<a href="https://www.facebook.com/konstantin.benyumov">Konstantin Benyumov</a>, 26.04.2013.</li>
+  <li><a href="https://lenta.ru/conf/kammerer">Lenta.Ru press-conference</a>, 29.07.2011.</li>
+  <li><a href="/assets/2011-03-xakep-liberte.pdf">Xakep article and quotes</a>
+(<a href="https://xakep.ru/2011/06/15/55953/">web</a>),
+<a href="https://ivinside.blogspot.com/">iv</a>, Andrey Matveev (Ed.),
+<a href="https://xakep.ru/issues/xa/146">№03/2011 (146)</a> pp. 94–97, 01.03.2011.</li>
+  <li><a href="/assets/2014-05-linuxwelt-liberte.pdf">LinuxWelt article</a> (<a href="https://www.pcwelt.de/ratgeber/Liberte_Linux_-_das_unknackbare_System-Mobiles_System-Set-8862109.html">web</a>), <a href="https://www.pcwelt.de/tipps/LinuxWelt_5_2014-8824570.html">№5/2014</a> pp. 48–49, 01.05.2014.</li>
+  <li>News:
+<a href="https://distrowatch.com/weekly.php?issue=20120820#feature" title="Liberté Linux — a secure way to communicate?">DistroWatch</a>,
+<a href="https://www.opennet.ru/opennews/art.shtml?num=34724" title="Вышел Liberté Linux 2012.3, первый дистрибутив с поддержкой режима безопасной загрузки UEFI">OpenNET</a>,
+<a href="https://lwn.net/Articles/416565/" title="Liberté Linux 2010.1">LWN.net</a>,
+<a href="https://cryptome.org/0003/liberte-linux.htm" title="Liberté Linux">Cryptome</a>,
+<a href="https://www.muylinux.com/2010/11/22/liberte-linux-anonimato-en-un-liveusb/" title="Liberté Linux: anonimato en un LiveUSB">MuyLinux</a>,
+<a href="https://web.archive.org/web/20151103043438/https://www.datormagazin.se/artiklar/tester/20110210/test-liberte-linux-20101" title="Test: Liberté Linux 2010.1">Datormagazin</a>,
+<a href="https://www.linux-magazin.de/?s=liberté+linux" title="Liberté Linux 2012.1 veröffentlicht">Linux Magazin</a></li>
+  <li>Forums &amp; blogs:
+<a href="https://www.linux.org.ru/view-news.jsp?tag=liberte" title="Вышла версия 2012.2 live-дистрибутива Liberté Linux">linux.org.ru</a>,
+<a href="https://www.reddit.com/r/linux/comments/e9miz/hide_yourself_from_the_man_liberté_linux_for/" title="Hide yourself from The Man: Liberté Linux for Anonymous">Reddit</a>,
+<a href="https://www.youtube.com/watch?v=EOj5sUceQQU" title="Liberté Linux - инструмент свободы">Чёрный Треугольник</a>,
+<a href="https://web.archive.org/web/20140210225831/http://greenflash.su/publ/liberte_linux/11-1-0-178" title="Liberté Linux">GreenFlash</a>,
+<a href="https://blog.uptodown.com/liberte-linux-una-distribucion-segura-liviana-y-portable/" title="Liberté Linux: una distribución segura, liviana y portable">Uptodown</a>,
+<a href="https://www.hacker10.com/internet-anonymity/anonymous-internet-surfing-with-liberte-linux/" title="Anonymous Internet surfing with Liberté Linux">Hacker 10</a>,
+<a href="https://openattitude.com/2011/06/05/fight-lawful-access-with-liberte-linux/" title="Fight “lawful access” with Liberté Linux">Open attitude</a>,
+<a href="https://web.archive.org/web/20140401212451/http://osarena.net/distros-roms/liberte-linux-mia-dianomi-gia-tin-asfalia-gentoo-based.html" title="Liberté Linux: Μια διανομή για την Ανωνυμία">OSArena</a>,
+<a href="https://web.archive.org/web/20160411062236/http://elkosmas.gr/2010/11/25/liberte_toujours/" title="Ασφαλείς επικοινωνίες με το Liberté Linux">elkosmas.gr</a>,
+<a href="https://oyk3865b.blog13.fc2.com/blog-entry-926.html" title="匿名で、ネットが出来るLiberté Linuxを、使ってみた。">Henry Le Chatelier</a></li>
+</ul>
+
+<h2 id="testimonials">Testimonials</h2>
+<ul>
+  <li>The best system for security and privacy. Secure, anonymous, pseudonymous
+surfing and communication works out of the box. Same for encrypted data
+storage. Wonderful!
+<em>—<a href="https://sourceforge.net/users/athaba">Christian St.</a>,
+<a href="https://sourceforge.net/projects/liberte/reviews/">SourceForge.net</a></em></li>
+  <li>This by far has to be one of the best anonymous live Linux distros I have
+come across.
+<em>—Keknom, <a href="https://sourceforge.net/projects/liberte/reviews/">SourceForge.net</a></em></li>
+  <li>In corrupted countries where censorship is the first interior politics
+pillar, Liberté Linux is a vital tool! Thanks for this gem!
+<em>—<a href="https://sourceforge.net/users/winston1984">Winston Smith</a>,
+<a href="https://sourceforge.net/projects/liberte/reviews/">SourceForge.net</a></em></li>
+  <li>I have tried Liberté on Eee PC 701, lacking any prior Linux experience. […]
+No setup is necessary. […] The distribution is well-fit for surfing on unfamiliar
+machines.
+<em>—Anonymous, HiveMind.me</em></li>
+  <li>This distro is the way to go. […] I have never seen anything quite as secure
+as this, everything is locked down. […] I literally don’t go anywhere without
+it.
+<em>—1as3df4gh, Silk Road</em></li>
+  <li>It’s a fortress. The security measures used in it will blow your effing
+mind!
+<em>—CaptainJohnny, Silk Road</em></li>
+  <li>Legion appreciates.
+<em>—Anonymous, <a href="https://sourceforge.net/projects/liberte/reviews/">SourceForge.net</a></em></li>
+  <li>I applaud your effort.
+<em>—Anonymous, <a href="https://boards.4chan.org/g/">4chan.org</a></em></li>
+  <li>My paranoia says: “Thanks!”
+<em>—Anonymous, <a href="https://www.linux.org.ru/news/linux-general/5579951/">linux.org.ru</a></em></li>
+</ul>
+
+<h2 id="features">Features</h2>
+<h4 id="system">System</h4>
+<ul>
+  <li>Kernel: <a href="https://wiki.gentoo.org/wiki/Project:Hardened">Hardened Gentoo</a> 3.4.7
+with <a href="https://grsecurity.net/">grsecurity/PaX</a> + <a href="https://lwn.net/Articles/447650/">overlayfs</a></li>
+  <li>System requirements: <a href="https://wiki.gentoo.org/wiki/Handbook:X86">x86</a> Pentium Ⅲ+ with
+<a href="https://en.wikipedia.org/wiki/Physical_Address_Extension">PAE</a>, ≈192 MiB RAM, ≈210 MiB on
+bootable (BIOS or (U)EFI) removable media (USB key, SD card, …)</li>
+  <li>First Linux distribution released with
+<a href="https://www.static.linuxfound.org/sites/main/files/lf_uefi_secure_boot_open_platforms.pdf">UEFI Secure Boot</a>-based trusted boot sequence.</li>
+  <li><a href="https://rickysarraf.github.io/laptop-mode-tools/">Laptop Mode Tools</a> handle
+<a href="https://wiki.gentoo.org/wiki/Power_management/Guide">power management</a>;
+hard disks are switched to quiet acoustic mode and spun down</li>
+  <li>Extensive Ethernet and Wi-Fi network devices support</li>
+  <li>Extensive autoconfiguration, including X server and audio mixer channels setup</li>
+  <li>Smooth integration as a <a href="https://www.virtualbox.org/">VirtualBox</a> (including clipboard),
+<a href="https://www.vmware.com/products/workstation-player.html">VMWare</a>,
+<a href="https://wiki.qemu.org/Features/KVM">QEMU</a> guest</li>
+  <li><a href="https://wiki.gnome.org/Projects/NetworkManager">NetworkManager</a> manages Internet connectivity,
+with PPTP / OpenVPN / Cisco VPN support</li>
+  <li>Static and removable devices are available via
+<a href="https://reactivated.net/writing_udev_rules.html">udev</a>+<a href="https://wiki.gentoo.org/wiki/AutoFS">AutoFS</a>-based
+automounting (includes VirtualBox and VMware shares)</li>
+  <li>No user interaction is required during boot, except for
+<a href="https://en.wikipedia.org/wiki/Linux_Unified_Key_Setup">OTFE</a> password entry</li>
+  <li>User’s important configuration changes are archived to OTFE encrypted volume upon shutdown</li>
+  <li>Applications are preconfigured and ready to use</li>
+</ul>
+
+<h4 id="applications">Applications</h4>
+<ul>
+  <li><a href="https://wiki.gentoo.org/wiki/Xorg/Guide">Fully modular</a> X server,
+with <a href="http://wiki.linuxfromscratch.org/blfs/wiki/Xorg7Fonts">TrueType-only fonts</a>
+for all <a href="https://github.com/uim/uim">uim</a>-supported languages</li>
+  <li><a href="https://wiki.lxde.org/">LXDE</a>- and <a href="http://developer.gnome.org/gtk3/stable/GtkSettings.html">GTK</a>-based
+desktop with <a href="https://wiki.archlinux.org/index.php/Lightweight_Applications">lightweight applications</a>:
+no GNOME/KDE libraries</li>
+  <li>Multilingualization using <a href="https://github.com/uim/uim">uim</a>: all input languages that are supported
+by <a href="https://www.m17n.org/">m17n-lib</a>, native Japanese support with <a href="https://anthy.osdn.jp/">anthy</a>,
+and <a href="http://florence.sourceforge.net/english.html">Florence virtual keyboard</a></li>
+  <li>Application-level UI internationalization: all unicode locales are available;
+locale, timezone and keyboard layout are easily switched with a custom tool</li>
+  <li>Basic:
+<a href="https://wiki.lxde.org/en/LXPanel">LXPanel</a>,
+<a href="http://openbox.org/">Openbox</a>,
+<a href="https://wiki.lxde.org/en/PCManFM">PCManFM</a> /
+<a href="http://emelfm.sourceforge.net/">emelFM2</a>,
+<a href="http://fileroller.sourceforge.net/">FileRoller</a>,
+<a href="http://www.pleyades.net/david/projects/sakura/">Sakura</a></li>
+  <li>Editors/Viewers:
+<a href="https://wiki.gnome.org/Apps/Gedit">gedit</a>,
+<a href="https://www.abisource.com/">AbiWord</a>,
+<a href="http://www.gnumeric.org/">Gnumeric</a>,
+<a href="https://wiki.gnome.org/Apps/Evince">Evince</a> (with DjVu support),
+<a href="https://fbreader.org/">FBReader</a></li>
+  <li>Internet:
+<a href="https://wiki.gnome.org/Apps/Web">Epiphany</a> (with HTML5 video),
+<a href="https://www.claws-mail.org/">Claws Mail</a>
+(with integrated <a href="/cables">cables communication</a>),
+<a href="http://xchat.org/">XChat</a>
+(with <a href="https://ygrek.org/p/cap_sasl.html">SASL</a>),
+<a href="https://www.pidgin.im/">Pidgin</a>
+(with <a href="https://otr.cypherpunks.ca/">OTR</a>),
+<a href="https://www.gftp.org/">gFTP</a>,
+<a href="https://ugetdm.com/">uGet</a></li>
+  <li>Audio/Video:
+<a href="https://wiki.gnome.org/Apps/Videos">Totem</a>,
+<a href="https://audacious-media-player.org/">Audacious</a>,
+<a href="http://www.geeqie.org/">Geeqie</a> /
+<a href="https://wiki.lxde.org/en/GPicView">GPicView</a>,
+<a href="https://libvips.github.io/libvips/">VIPS</a> /
+<a href="https://github.com/libvips/nip2">nip2</a>,
+<a href="http://www.graphicsmagick.org/">GraphicsMagick</a>,
+<a href="https://www.berlios.de/software/cdrtools/">Cdrtools</a>,
+<a href="https://www.speex.org/">Speex</a> audio clips encoding custom tool</li>
+  <li>Extras:
+<a href="https://www.gnupg.org/related_software/gpa/">GNU Privacy Assistant</a>,
+<a href="https://als.regnet.cz/fpm2/">Figaro’s Password Manager 2</a>,
+<a href="https://qalculate.github.io/">Qalculate!</a></li>
+</ul>
+
+<h2 id="other-livecdliveusb-and-related-anonymity-projects">Other LiveCD/LiveUSB and related anonymity projects</h2>
+<ul>
+  <li><a href="https://tails.boum.org/">Tails</a>
+(<a href="https://www.debian.org/">Debian</a>+<a href="https://www.gnome.org/">GNOME</a>)</li>
+  <li><a href="https://web.archive.org/web/20140816183354/http://www.odebian.org/">Odebian</a>
+(<a href="https://www.debian.org/">Debian</a>), 2014✝</li>
+  <li><a href="https://www.mandalka.name/privatix/index.html.en">Privatix Live-System</a>
+(<a href="https://www.debian.org/">Debian</a>+<a href="https://www.gnome.org/">GNOME</a>), 2011✝</li>
+  <li><a href="https://web.archive.org/web/20110207193408/http://www.haven-project.org/">The Haven Project</a>
+(<a href="https://ubuntu.com/">Ubuntu</a>), 2011✝</li>
+  <li><a href="https://sourceforge.net/projects/democrakey/">DemocraKey LiveCD</a>
+(<a href="https://www.opensuse.org/">openSUSE</a>), 2010✝</li>
+  <li><a href="https://web.archive.org/web/20110208060048/http://browseanonymouslyanywhere.com/">Incognito LiveCD</a>
+(<a href="https://www.gentoo.org/">Gentoo</a>+<a href="https://kde.org/">KDE</a>), 2009✝</li>
+  <li><a href="https://sourceforge.net/projects/anonym-os/">Anonym.OS LiveCD</a>
+(<a href="https://www.openbsd.org/">OpenBSD</a>), 2006✝</li>
+</ul>
+
+<p>See also the lists on <a href="https://trac.torproject.org/projects/tor#LiveCDUSB">Tor Bug Tracker</a> and on
+<a href="https://web.archive.org/web/20160613215618/http://www.privacylover.com/anonymous-live-cd-list/">Privacy Lover</a>.</p>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src="/public/js/script.js"></script>
+  </body>
+</html>

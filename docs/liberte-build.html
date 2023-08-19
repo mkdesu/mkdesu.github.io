@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Building Liberté Linux &middot; DEₑSU
+    
+  </title>
+
+  
+  <link rel="canonical" href="https://dee.su/liberte-build">
+  
+
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/fonts.css">
+  <link rel="stylesheet" href="/public/css/extra.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+</head>
+
+
+  <body class="theme-base-08 sidebar-overlay">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<!--input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  
+
+  <div class="sidebar-item">
+    <p>
+      <img src="/public/img/liberte-logo.png" alt="Logo" width="128" height="128" />
+    </p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+
+    
+    
+      
+        
+          <a class="sidebar-nav-item" href="/">Welcome to DEₑSU</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/liberte">Liberté Linux</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/cables">Cables Communication</a>
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2023
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">DEₑSU</a>
+            <small>Anonymouse</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="page">
+  <h1 class="page-title">Building Liberté Linux</h1>
+  <h2 id="building-custom-liveusb-distributions">Building custom LiveUSB distributions</h2>
+<p>The Liberté build process is distribution-neutral, and is fully automated.</p>
+
+<ul>
+  <li>You do not need to be a <a href="https://www.gentoo.org/">Gentoo</a> user — any modern
+x86 or x86-64 Linux distribution should suffice</li>
+  <li>A full build takes ~8.5 hours on dual-core 2.66 GHz Intel E8200</li>
+  <li>An incremental build with no package upgrades takes ~25 minutes</li>
+  <li>About 8 GiB of disk space is required</li>
+  <li>Filesystem must support <code class="language-plaintext highlighter-rouge">security.*</code> and <code class="language-plaintext highlighter-rouge">user.*</code> extended attributes</li>
+  <li>Outbound HTTP(S) connections must be allowed (the <code class="language-plaintext highlighter-rouge">*_proxy</code> <a href="https://www.gnu.org/software/wget/manual/html_node/Proxies.html">environment
+variables</a>
+are honored when set)</li>
+</ul>
+
+<p>Let’s assume that the Liberté package is in <code class="language-plaintext highlighter-rouge">./liberte</code>, and the build root
+is <code class="language-plaintext highlighter-rouge">/tmp/livecd</code>. Clone the <a href="https://github.com/mkdesu/liberte">git tree</a>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone https://github.com/mkdesu/liberte.git
+</code></pre></div></div>
+
+<p>You might want to adjust <code class="language-plaintext highlighter-rouge">liberte/conf/version</code> (don’t use spaces).
+The following command builds the image (execute as <code class="language-plaintext highlighter-rouge">root</code>):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ liberte/build /tmp/livecd
+</code></pre></div></div>
+
+<p>Read the (straightforward) <code class="language-plaintext highlighter-rouge">build</code> script to see how to customize the result
+by manually performing the individual steps. Subsequent invocations of
+<code class="language-plaintext highlighter-rouge">build</code> will perform an incremental build, unless the <code class="language-plaintext highlighter-rouge">fresh</code> parameter is
+supplied. After a successful build, follow the
+<a href="/liberte-install">installation instructions</a>.</p>
+
+<h2 id="post-build-tests">Post-build tests</h2>
+<p>In order to ensure that your custom build has kept the anonymity features
+intact, it is necessary to perform some manual testing, which is most easily
+done by running Liberté in a virtual machine. This easily allows for, e.g.,
+network packets analysis by connecting <a href="https://www.wireshark.org/">Wireshark</a>
+to the VM’s network interface — an alternative to adding Wireshark to the
+build. Events log is available in <code class="language-plaintext highlighter-rouge">/var/log/everything/current</code>.</p>
+
+<ul>
+  <li>Network traffic: DHCP hostname not being sent (check all fields), absence of
+non-DHCP/Tor traffic (Tor uses <code class="language-plaintext highlighter-rouge">https</code> and <code class="language-plaintext highlighter-rouge">http</code> ports), contrast with
+the Unsafe Browser traffic.</li>
+  <li>X server screen locking: <em>Zap</em> (<code class="language-plaintext highlighter-rouge">Ctrl-Alt-Bksp</code>) and <em>VT Switch</em>
+(<code class="language-plaintext highlighter-rouge">Ctrl-Alt-F*</code>) key sequences are disabled, closing the laptop lid launches
+screen lock (and disables <em>SysRq</em> (<code class="language-plaintext highlighter-rouge">SysRq-*</code>) and PowerOff buttons for its
+duration), booting with closed lid launches screen lock on X startup.</li>
+  <li>Reboot and shutdown: Memory is wiped before reboot / shutdown (best seen
+with a memory dump in VM after creating a large file in Unionfs), memory is
+wiped on boot media extraction, <code class="language-plaintext highlighter-rouge">qemulate.sh</code> script works as intended.</li>
+  <li>Web browsing and chat: Browsing privacy (Torification, UTC timezone), XChat
+privacy (using SSL connections for desired networks), Pidgin privacy
+(<a href="https://otr.cypherpunks.ca/">OTR</a> plugin), Unsafe Browser partial privacy
+(<em>no Torification</em>, UTC timezone) and distinctive look-and-feel.</li>
+  <li>Cables communication: Identity is kept between reboots, sending to self,
+sending to another node (<code class="language-plaintext highlighter-rouge">To:</code>, <code class="language-plaintext highlighter-rouge">Cc:</code>, <code class="language-plaintext highlighter-rouge">Bcc:</code>, refusal to send if an
+address is incorrect), sending to/from Tor and I2P-based addresses, sending to
+node which is temporarily offline, reliability (boot media removal while nodes
+communicate, temporal substitution of wrong certificates for sender and
+recipient, etc.), timing out of unsent messages.</li>
+  <li>Other communication tasks: GnuPG keys search and retrieval, SSH connections
+(omitting username initially substitutes <code class="language-plaintext highlighter-rouge">root</code>).</li>
+  <li>Time synchronization: HTP synchronizes time and catches up with network
+interface changes, same for NTP (if enabled), Tor starts up when the clock is
+wrong (more than 1.5h into past / future).</li>
+  <li>System security: User sees only own processes, kernel log (<code class="language-plaintext highlighter-rouge">dmesg</code>) and
+loaded modules list are not available, <code class="language-plaintext highlighter-rouge">root</code> password is disabled,
+<code class="language-plaintext highlighter-rouge">paxtest</code> produces correct output, hard drives are spun down after boot.</li>
+  <li>Media automounting: Mountpoints are automatically added and removed under
+<code class="language-plaintext highlighter-rouge">/media</code> for USB/SD(HC)/CD/DVD media, all supported filesystems are
+recognized, hibernated NTFS partitions are available in read-only mode.</li>
+  <li>Automatic tests: All automatic tests (<code class="language-plaintext highlighter-rouge">test-liberte</code>) pass.</li>
+</ul>
+
+<h2 id="live-media-framework">Live media framework</h2>
+<p>You can use Liberté’s build framework to master your own
+<a href="https://www.gentoo.org/">Gentoo</a>-based LiveUSBs/CDs. For a non-anonimity
+oriented distribution, you will most likely want to at least turn off the
+firewall (grep for <code class="language-plaintext highlighter-rouge">iptables</code> in <code class="language-plaintext highlighter-rouge">src/root/setup</code>), disable forwarding of
+all HTTP requests to Tor (see <code class="language-plaintext highlighter-rouge">src/etc/privoxy/config</code>), and customize the
+packages list in <code class="language-plaintext highlighter-rouge">src/var/lib/portage/world</code>. Note that
+<code class="language-plaintext highlighter-rouge">src/root/setup-copy</code> explicitly checks that Perl and Python have been
+uninstalled — disable these checks if necessary. Use <code class="language-plaintext highlighter-rouge">enter</code> script with the
+single directory argument to work with the non-pruned distribution tree.</p>
+
+<p>Since I don’t want to write extensive documentation for the build system,
+below is a brief comparison with
+<a href="https://web.archive.org/web/20140209113138/http://larch.berlios.de/">larch</a> v8,
+a live CD/DVD/USB-stick construction kit for <a href="https://www.archlinux.org/">Arch Linux</a>,
+which does have such a documentation.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Liberté build framework</th>
+      <th>larch</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Build requirements</td>
+      <td>any Linux, POSIX shell</td>
+      <td>any Linux, Python</td>
+    </tr>
+    <tr>
+      <td>Build customization</td>
+      <td>monolithic</td>
+      <td>profile-based, multilayer</td>
+    </tr>
+    <tr>
+      <td>Initramfs scripts</td>
+      <td>custom, very fast and robust (no <strong>genkernel</strong>)</td>
+      <td>Arch’s <strong>mkinitcpio</strong></td>
+    </tr>
+    <tr>
+      <td>Unification file system</td>
+      <td><strong>overlayfs</strong></td>
+      <td><strong>aufs</strong></td>
+    </tr>
+    <tr>
+      <td>Persistence</td>
+      <td>encrypted, archived changes upon shutdown, user configuration only</td>
+      <td>no encryption, write-through to live media layer, entire file system</td>
+    </tr>
+    <tr>
+      <td>Target platforms</td>
+      <td><strong>i686</strong> (<strong>x86_64</strong> build host is fine)</td>
+      <td><strong>i686</strong> or <strong>x86_64</strong></td>
+    </tr>
+    <tr>
+      <td>Installation from live media</td>
+      <td>not supported (live deployment only)</td>
+      <td>supported (e.g., install Arch on hard disk)</td>
+    </tr>
+    <tr>
+      <td>Auto-configuration</td>
+      <td>extensive support</td>
+      <td>regular Arch</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src="/public/js/script.js"></script>
+  </body>
+</html>

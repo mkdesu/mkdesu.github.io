@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Installing Liberté Linux &middot; DEₑSU
+    
+  </title>
+
+  
+  <link rel="canonical" href="https://dee.su/liberte-install">
+  
+
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/fonts.css">
+  <link rel="stylesheet" href="/public/css/extra.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+</head>
+
+
+  <body class="theme-base-08 sidebar-overlay">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<!--input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  
+
+  <div class="sidebar-item">
+    <p>
+      <img src="/public/img/liberte-logo.png" alt="Logo" width="128" height="128" />
+    </p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+
+    
+    
+      
+        
+          <a class="sidebar-nav-item" href="/">Welcome to DEₑSU</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/liberte">Liberté Linux</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/cables">Cables Communication</a>
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2023
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">DEₑSU</a>
+            <small>Anonymouse</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="page">
+  <h1 class="page-title">Installing Liberté Linux</h1>
+  <h2 id="installation-on-removable-media">Installation on removable media</h2>
+<p>In order to install Liberté on a FAT/FAT32-formatted, or ext[234]-formatted
+USB key, SD card, or any other kind of bootable media:</p>
+
+<ol>
+  <li>
+    <p>Download <strong><code class="language-plaintext highlighter-rouge">liberte-201X.Y.zip</code></strong> from the
+<a href="https://sourceforge.net/projects/liberte/">SourceForge project</a> site.
+Latest version is always the default download, so just click the green button.
+Note that the top-level <code class="language-plaintext highlighter-rouge">liberte</code> folder in all installation package types
+(<code class="language-plaintext highlighter-rouge">.zip</code> / <code class="language-plaintext highlighter-rouge">.iso</code> / <code class="language-plaintext highlighter-rouge">.ova</code>) is exactly the same.</p>
+  </li>
+  <li>
+    <p>Extract the archive into the top directory of the media you want to use
+(including the <code class="language-plaintext highlighter-rouge">liberte</code> archive root) — i.e., in Windows put <code class="language-plaintext highlighter-rouge">D:</code> or
+similar into the <em>“Extract to …”</em> dialog. This is all that’s needed when
+upgrading; however, to upgrade a <em>running</em> Liberté instance, add <code class="language-plaintext highlighter-rouge">toram</code> to
+the boot menu options first.</p>
+  </li>
+  <li>
+    <p>Make the media bootable (unnecessary when upgrading or when booting using
+<a href="https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface">(U)EFI</a>):</p>
+
+    <ul>
+      <li>
+        <p><strong>Windows</strong>: Launch <code class="language-plaintext highlighter-rouge">setup.bat</code> in <code class="language-plaintext highlighter-rouge">liberte</code> folder. You will likely
+need to right-click and select <em>Run as administrator</em> in Vista and in
+Windows 7. Watch out for errors in the console messages. Do not permit
+antivirus software like <a href="http://www.avast.com/free-antivirus-download">Avast</a>
+to run the installer in a sandbox, since the bootloader will fail to install
+in that case.</p>
+      </li>
+      <li>
+        <p><strong>Linux</strong>: Run <code class="language-plaintext highlighter-rouge">sh /media/…/liberte/setup.sh auto</code> as root.</p>
+      </li>
+      <li>
+        <p>For virtualized environments, download <strong><code class="language-plaintext highlighter-rouge">liberte-201X.Y.ova</code></strong> and
+import it into the virtual machine (<em>Import Appliance</em> in
+<a href="https://www.virtualbox.org/">VirtualBox</a>, <em>Open</em> in
+<a href="https://www.vmware.com/products/workstation-player.html">VMware</a>, etc.). 
+On Linux, it is also possible to immediately test-drive Liberté in
+<a href="https://wiki.qemu.org/">QEMU</a> / <a href="https://www.linux-kvm.org/">QEMU-KVM</a>
+by running <code class="language-plaintext highlighter-rouge">liberte/qemulate.sh</code> from an extracted <code class="language-plaintext highlighter-rouge">.zip</code> archive;
+persistence support will be disabled (similarly to <code class="language-plaintext highlighter-rouge">.iso</code>).</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>See <em>Secure Boot</em> section below wrt. booting writable media that are
+unsupported as boot devices on given hardware (e.g., SD cards).</p>
+
+<p>When upgrading, it is recommended to reset the user configuration after
+booting: add <code class="language-plaintext highlighter-rouge">nosettings</code> to the boot menu options, remove
+<code class="language-plaintext highlighter-rouge">~/persist/settings/config.tar.xz</code>, and reboot. Upgrading will migrate old
+cables communication certificates on first boot, and should not cause any
+usability issues.</p>
+
+<p><strong>NOTE</strong>: Older computers might be able to boot only FAT(16)-formatted USB
+keys — the corresponding BIOS boot option is typically <code class="language-plaintext highlighter-rouge">USB RMD-FDD</code>. For
+such computers, installing on an HDD partition is likely a better option: use
+<code class="language-plaintext highlighter-rouge">nombr</code> option of <code class="language-plaintext highlighter-rouge">setup.sh</code> (or remove <code class="language-plaintext highlighter-rouge">-m -a</code> options from
+<code class="language-plaintext highlighter-rouge">setup.bat</code>), and chain-load the partition from your bootloader.</p>
+
+<h2 id="authenticity">Authenticity</h2>
+<p>Liberté Linux releases are signed with a designated PGP key:</p>
+
+<p><a href="https://keys.openpgp.org/search?q=liberte%40dee.su">Liberté Linux (Release Signing Key)</a> &lt;liberte@dee.su&gt;<br />
+<code class="language-plaintext highlighter-rouge">6FDD D756 110C 1B07 249F D07E 9B02 7FCD 81DE 1001</code></p>
+
+<p>You are encouraged to verify the downloaded files using, e.g.,
+<a href="https://www.gnupg.org/related_software/gpa/">GNU Privacy Assistant</a> or
+<a href="https://www.broadcom.com/products/cyber-security/information-protection/encryption">PGP Desktop</a>,
+after fetching the key from a keyserver (or downloading it using the link above),
+by providing the associated <code class="language-plaintext highlighter-rouge">*.asc</code> file as input:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gpg --verify liberte-2010.1.zip.asc
+gpg: Signature made Fri 19 Nov 2010 03:48:36 MSK
+gpg:                using DSA key 0x9B027FCD81DE1001
+gpg: Good signature from "Liberté Linux (Release Signing Key) &lt;liberte@dee.su&gt;"
+</code></pre></div></div>
+
+<h2 id="secure-boot">Secure Boot</h2>
+<p>(U)EFI bootloader binaries are signed for Secure Boot, establishing a trusted
+boot chain starting with a KEK / DB certificate (located in EFI directory).
+The procedure for enrolling the certificate in
+<a href="https://github.com/tianocore/tianocore.github.io/wiki/OVMF">TianoCore OVMF</a>
+is as follows:</p>
+
+<ol>
+  <li>Navigate to <em>Device Manager → Secure Boot Configuration → Secure Boot
+Mode</em>, and select <em>Custom Mode</em>.</li>
+  <li>Navigate to <em>Device Manager → Secure Boot Configuration → Custom Secure
+Boot Options → DB Options → Enroll Signature</em>, load
+<code class="language-plaintext highlighter-rouge">EFI/Liberte-SecureBoot-CA.der</code>, and commit the changes.</li>
+</ol>
+
+<p>For real hardware, the procedure should be similar — e.g., for Dell Latitude
+firmware, navigate to <em>Secure Boot → Expert Key Management → Enable Custom
+Mode → db: Append from File</em>. It is also possible to add the bootloader
+signature directly (by selecting, e.g., <code class="language-plaintext highlighter-rouge">EFI/BOOT/BOOTx64.EFI</code> instead of
+the certificate above), but this step will need to be done after each Liberté
+update. Adding the certificate to KEK database (instead of DB above) will let
+Liberté modify authenticated EFI variables at runtime — such functionality is
+not used at present.</p>
+
+<p>If you don’t want to customize Secure Boot settings, and your UEFI firmware
+has Microsoft’s UEFI CA certificate already enrolled (which is probably the
+case), you can use <a href="https://mjg59.dreamwidth.org/20303.html">shim</a> instead
+(this assumes a <code class="language-plaintext highlighter-rouge">.zip</code> install):</p>
+
+<ol>
+  <li>Drop
+<a href="https://www.codon.org.uk/~mjg59/shim-signed/shim-signed.tgz"><code class="language-plaintext highlighter-rouge">shim.efi</code> and <code class="language-plaintext highlighter-rouge">MokManager.efi</code></a>
+into <code class="language-plaintext highlighter-rouge">EFI/BOOT</code>.</li>
+  <li>Rename <code class="language-plaintext highlighter-rouge">BOOTx64.EFI</code> to <code class="language-plaintext highlighter-rouge">grubx64.efi</code>, and then rename <code class="language-plaintext highlighter-rouge">shim.efi</code> to
+<code class="language-plaintext highlighter-rouge">BOOTx64.EFI</code>.</li>
+  <li>After booting, use <em>shim</em>’s interface to enroll
+<code class="language-plaintext highlighter-rouge">EFI/Liberte-SecureBoot-CA.der</code> key, or <code class="language-plaintext highlighter-rouge">EFI/BOOT/BOOTx64.EFI</code> signature,
+similarly to OVMF instructions above. Note that such whitelisting is visible
+to <em>shim</em> only.</li>
+</ol>
+
+<p>With regular BIOS-based boot, only the last stage of trusted boot chain is
+performed: root filesystem image verification. However, a minimal bootstrap
+<code class="language-plaintext highlighter-rouge">.iso</code> image (lacking a compressed root filesystem) is now shipped, which
+can be burned to read-only media and used to boot a regular install of Liberté
+on writable media. Such image is also useful for booting writable media that
+are unsupported as boot devices on given hardware (e.g., SD cards).</p>
+
+<h2 id="support">Support</h2>
+<p>Bug reports, suggestions, and generic discussion are always welcome. Don’t
+forget to rate this project on
+<a href="https://sourceforge.net/projects/liberte/">SourceForge</a>!</p>
+
+<ul>
+  <li><a href="/liberte-contribute">Contribute and discuss</a></li>
+  <li>E-mail: <a href="mailto:mk@dee.su">Maxim Kammerer &lt;mk@dee.su&gt;</a></li>
+</ul>
+
+<p>If you are interested in having specific customizations implemented, please
+contact me by e-mail.</p>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src="/public/js/script.js"></script>
+  </body>
+</html>
